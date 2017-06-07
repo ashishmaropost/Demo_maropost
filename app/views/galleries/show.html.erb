@@ -1,0 +1,16 @@
+<br>
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+    <%= image_tag @gallery.image, class: "image_gallery" %>
+    <br>
+    <p>
+  	  <%= @gallery.title %>
+  	</p>
+  <hr>
+  <%= link_to 'Edit', edit_gallery_path(@gallery) %> |
+  <%= link_to 'Back', galleries_path %>
+  </div>
+</div>
+
+
+

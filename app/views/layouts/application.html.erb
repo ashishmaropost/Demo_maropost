@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DemoApp</title>
+<%= csrf_meta_tags %>
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>      
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+  <div class="container topnav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand topnav" href="/">MAROPOST</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li>
+                <a href="/about">About us</a>
+            </li>
+            <li>
+                <a href="/contact_us">Contact us</a>
+            </li>
+            <li>
+                <a href="/galleries">Gallery</a>
+            </li>
+            <li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" >
+              <%= image_tag("/assets/user.png", :class => "img-responsive img-circle user") %>
+              </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Change your password", edit_user_registration_path %></li>
+                  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></a></li>
+                </ul>
+                
+            </li> 
+             <% end %>
+        </ul>
+    </div>
+      <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<div class="clear_fix"></div>
+  <% flash.each do |key, value| %><br>
+   <div class="<%= flash_class(key) %> fade in">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <%= value %>
+   </div>
+<% end %>
+<%= yield %>
+<!-- Footer -->
+<footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <p class="copyright text-muted small">Copyright &copy; 2017 Maropost Inc. All rights reserved. <% if user_signed_in? %> |  <a href="/contact_us" class="contact">Contact Us</a><%end%></p>
+          </div>
+      </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
+<script type="text/javascript">
+  $(".navbar-toggle, .dropdown-toggle").click(function() {
+    $(".collapse, .dropdown-menu").toggle();
+});
+</script>
+
+
+
+
+

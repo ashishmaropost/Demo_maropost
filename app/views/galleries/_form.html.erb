@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 text-center form_text">
+      <center><h2>Create Gallery</h2> </center>
+        <hr><%= form_with(model: gallery, local: true) do |form| %>
+        <% if gallery.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
+
+            <ul>
+            <% gallery.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+         <div class="field">
+          <%= form.text_field :title,  class:"form-control alphaonly", placeholder:"Image title" %>
+        </div>
+
+        <div class="field"><br>
+          <%= form.file_field :image %>
+        </div>
+        <div class="actions"><br/>
+          <%= form.submit "Submit", class: "btn btn-primary btn-md btn-160" %>
+          <%= link_to 'Cancel', galleries_path, class: "btn btn-primary btn-md btn-160 " %>
+        </div><br><br>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$('.alphaonly').bind('keyup blur',function(){ 
+    var node = $(this);
+    node.val(node.val().replace(/[^a-zA-Z]/g,'') ); }
+);
+</script>

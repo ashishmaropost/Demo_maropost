@@ -1,0 +1,59 @@
+<%= form_tag '/edit_profile_image', id: "image_upload_#{gallery.id}", :multipart => true do %>
+  <% if gallery.user_id == current_user.id %>
+  <div class="col-xs-6 col-sm-4 col-md-3">            
+    <div class="thumbnail">
+      <div class="caption">
+        <h4 id="<%= gallery.user_id == current_user.id ? "txt_hide_#{gallery.id}" : ""%>"><%= gallery.title %></h4>
+        <input id="txtBox_<%= gallery.id%>" type="textbox" name="title" value="<%= gallery.title %>" style="display:none;color:black;" onfocusout='onFocusOutForName(this);' data-obj-id= "<%= gallery.id %>" data-obj-old-val= "<%= gallery.title %>"  />
+        <p>
+        <a href="JavaScript:Void(0);" class="label label-danger" onclick = '$("#user-image_<%= gallery.id %>").click();'>Edit</a>
+        <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class: "label label-default" %></a>
+        </p>
+      </div>
+      <%= image_tag gallery.image, style: "height:300px;height:200px;", id:"imgprvw_#{gallery.id}" %>
+    </div>  
+  </div>
+  <%end%>
+  <%= file_field_tag :avatar,name: "avatar", :id => "user-image_#{gallery.id}" ,:onchange => "showimagepreview(this)" ,:class=>"img_file hide", data: {obj_id: "#{gallery.id}" } %></td>
+  <%= hidden_field_tag :gallery_id, {}, value: gallery.id %>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $("#txt_hide_<%= gallery.id%>").on('click', function() {
+        
+        $("#txt_hide_<%= gallery.id%>").hide();
+        $("#txtBox_<%= gallery.id%>").show();
+    });
+  });
+  function onFocusOutForName(obj){
+    var obj_id = obj.dataset.objId
+    var old_val = obj.dataset.objOldVal
+    var new_val = $("#txtBox_" + obj_id).val();
+    if (old_val == new_val)
+    {
+      alert("Please Need to Change text for updating.")
+      $("#txt_hide_" + obj_id).show();
+      $("#txtBox_" + obj_id).hide();
+      return false;
+    }
+    else
+    {
+       $('#image_upload_' + obj_id ).submit();
+    }
+  }
+</script>
+<script>
+  function showimagepreview(input) {
+    var obj_id = input.dataset.objId;
+    if (input.files && input.files[0]) {
+    var filerdr = new FileReader();
+    filerdr.onload = function(e) {
+
+    $("#imgprvw"+ obj_id).attr('src', e.target.result);
+    }
+    filerdr.readAsDataURL(input.files[0]);
+    }
+    $('#image_upload_' + obj_id ).submit();
+  }
+</script>
