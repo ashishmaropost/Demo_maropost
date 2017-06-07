@@ -85,7 +85,7 @@ class GalleriesController < ApplicationController
     if params[:avatar].present?
       @gallery = Gallery.find(params[:gallery_id])
       @img_name = params[:avatar].original_filename 
-      @origin_img = @gallery.image.url.split("#{@gallery.try(:id)}/").last
+      @origin_img = @gallery.try(:image).try(:url).split("#{@gallery.try(:id)}/").last rescue nil
       if @img_name == @origin_img
         flash[:danger]= "Image was already exits."
       else

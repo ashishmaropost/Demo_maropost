@@ -11,9 +11,11 @@ class Gallery < ApplicationRecord
       product = find_by_id(row["id"]) || new
       product.attributes = row.to_hash.slice(*row.to_hash.keys)
       product.save!
+      product.update(image: File.open("#{Rails.root}/public/#{row['image']}", 'rb'))
     end
   end
 
+ 
 
    def self.open_spreadsheet(file)
        # xlsx = Roo::Excelx.new(file.path)

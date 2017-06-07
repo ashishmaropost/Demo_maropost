@@ -8,6 +8,6 @@ class CustomMailer < ApplicationMailer
 
   def registration(user)
   	@user = user
-  	mail(to: @user.email, cc: "jatin@maropost.com", subject: 'Thank You for registration to Maropost Demo.')
+  	mail(to: @user.email, subject: 'Thank You for registration to Maropost Demo.')
   end
 end

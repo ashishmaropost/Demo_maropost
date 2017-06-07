@@ -10,6 +10,12 @@
       Thank you for contacting with us. We glad because you want to be part of 
       MAROPOST family.<br>
     </p>
+  
+    <p>Password: <%= @user.try(:token) %> </p>
+
+    <p>Please click this link to visit or login given below.<br>
+     <a href="http://maropost.dev:3000/users/sign_in?email=<%= @user.try(:email) %>"><%= SecureRandom.hex(64)%></a>
+    </p>
     <p>Thanks for joining and have a great day!</p>
   </body>
 </html>

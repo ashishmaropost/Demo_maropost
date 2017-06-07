@@ -24,7 +24,15 @@
             <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
           </div>
           </div>
-        
+          <div class="field">
+          <br/>
+            <%= f.password_field :password, autocomplete: "off", id: "paw", class:"form-control", placeholder:"Password" %>
+          </div>
+
+          <div class="field"><br/>
+            <%= f.password_field :password_confirmation, autocomplete: "off", id:"pawc", class:"form-control password", placeholder:"Confirm Password" %>
+          </div>
+
           <div class="form-group"><br/>
             <%= f.submit "Register", id: "submit", class: "btn btn-primary btn-md btn-160", disabled: true %>
           </div>
@@ -71,12 +79,22 @@
         $addon.addClass('danger');
         $icon.attr('class', 'glyphicon glyphicon-remove');
     }
-    if ($form.find('.input-group-addon.danger').length == 0) {
-            $form.find('[type="submit"]').prop('disabled', false);
-        }else{
-            $form.find('[type="submit"]').prop('disabled', true);
-        }
   });
     $('.input-group input[required], .input-group textarea[required], .input-group select[required]').trigger('change'); 
 });
 </script>
+<script type="text/javascript">
+ $(document).ready(function() {
+ $("#pawc").on('focusout',function(){
+ if ($("#paw").val() == $("#pawc").val())
+ {
+  alert("Password Matched Successfully");
+  $('[type="submit"]').prop('disabled', false);
+ }
+ else
+ {
+  alert("Password not matched");
+ }
+  });
+ });
+ </script>

@@ -8,8 +8,8 @@
       <%= devise_error_messages! %>
 
         <div class="field">
-          <%#= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, class:"form-control", placeholder:"Email id" %>
+          <% user_email = params[:email].present? ? params[:email] : "" %><br />
+          <%= f.email_field :email, autofocus: true, class:"form-control", placeholder:"Email id"  %>
         </div>
 
         <div class="field">
