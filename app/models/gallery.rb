@@ -18,7 +18,6 @@ class Gallery < ApplicationRecord
     end
   end
 
- 
 
    def self.open_spreadsheet(file, current_user)
        # xlsx = Roo::Excelx.new(file.path)
