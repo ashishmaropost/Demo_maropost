@@ -4,7 +4,7 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = Gallery.page(params[:page]).per(12)
+    @galleries = current_user.galleries.page(params[:page]).per(12)
     respond_to do |format|
       format.html
       #Download or export csv and spreadsheet
@@ -105,7 +105,7 @@ class GalleriesController < ApplicationController
   end
 
    def import
-    Gallery.import(params[:file])
+    Gallery.import(params[:file],current_user)
     redirect_to '/galleries', notice: "Gallery imported."
   end
 

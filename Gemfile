@@ -65,5 +65,4 @@ gem 'carrierwave', '~> 1.0'
 gem 'kaminari'
 gem 'best_in_place', '~> 3.0.1'
 gem "figaro"
-gem 'roo'
-
+gem 'roo-xls'

@@ -5,24 +5,19 @@
 	<%= link_to 'New Gallery', new_gallery_path %>
 	</div>
 
-	<p>
-  Download:
-  <%= link_to "CSV", galleries_path(format: "csv") %> |
-  <%= link_to "Excel", galleries_path(format: "xls") %>
-</p>
-		<div class="col-md-5 col-sm-6 pull-right col-md-offset-1">
-		<div class="col-md-3">Import CSV :</div>
-		<%= form_tag import_galleries_path, multipart: true do %>
-		<div class="col-md-5">
-		<%= file_field_tag :file %>
-		</div>
-		<div class="col-md-4">
-		  <%= submit_tag "Import", :class=>"btn btn-primary" %>
-		  </div>
-		<% end %>
-		</div>
+	<div class="col-md-5 col-sm-6 pull-right col-md-offset-1">
+	<div class="col-md-3">Import CSV :</div>
+	<%= form_tag import_galleries_path, multipart: true do %>
+	<div class="col-md-5">
+	<%= file_field_tag :file %>
 	</div>
-	<hr>
+	<div class="col-md-4">
+	  <%= submit_tag "Import", :class=>"btn btn-primary" %>
+	  </div>
+	<% end %>
+	</div>
+</div>
+<hr>
 </div>
 
 <div class="container">
