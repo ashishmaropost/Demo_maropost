@@ -17,7 +17,17 @@ class HomeController < ApplicationController
    end
   end
  
- def about
- 	@abouts = About.all
- end
+	 def about
+	 	@abouts = About.all
+	 end
+
+
+	def error_404
+    @requested_path = request.path
+    respond_to do |format|
+      format.html { render "home/not_found"}
+      format.json { render json: {routing_error: @requested_path} }
+    end
+   end
+
 end

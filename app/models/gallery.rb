@@ -8,7 +8,8 @@ class Gallery < ApplicationRecord
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       @gallery = Gallery.find_by_title(row["title"])
-      if !(@gallery.present? && @gallery.try(:user).try(:id) == current_user.try(:id))
+
+      if (@gallery.try(:title) != row['title']) && (@gallery.try(:user).try(:id) != current_user.try(:id))
         gallery = find_by_id(row["id"]) || new
         gallery.attributes = row.to_hash.slice(*row.to_hash.keys)
         gallery.user_id = current_user.id 

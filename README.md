@@ -22,3 +22,17 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+registration response
+{
+  "code": 200,
+  "status": "Success",
+  "message": "Please check your email.",
+  "user": {
+    "email": "ashish.api.test3@mailinator.com",
+    "authentication_token": "9ejBcmTxy-EsxRynAPh1",
+    "created_at": "2017-06-09T09:40:15.000Z",
+    "updated_at": "2017-06-09T09:40:15.000Z"
+  }
+}
+ys9384106C

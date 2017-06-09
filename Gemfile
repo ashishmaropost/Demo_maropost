@@ -66,3 +66,4 @@ gem 'kaminari'
 gem 'best_in_place', '~> 3.0.1'
 gem "figaro"
 gem 'roo-xls'
+gem 'validates_email_format_of'
