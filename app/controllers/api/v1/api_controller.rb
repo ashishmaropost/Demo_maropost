@@ -1,6 +1,6 @@
 class Api::V1::ApiController < ApplicationController
 	skip_before_action :verify_authenticity_token 
-	respond_to :json
+	respond_to :xml
 	helper_method :current_user
 	include ApplicationHelper
 	  # Authenticate user.
@@ -9,7 +9,7 @@ class Api::V1::ApiController < ApplicationController
 	end
 
 	def authenticate_user!
-	    render json:['401 Unauthorized!'],status: 401 unless current_user
+	    render xml:['401 Unauthorized!'],status: 401 unless current_user
 	end
 
 end

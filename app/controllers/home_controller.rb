@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  skip_before_action :verify_authenticity_token 
   before_action :authenticate_user!, only:[:contact_us, :about]
   def index
   end
@@ -26,7 +27,7 @@ class HomeController < ApplicationController
     @requested_path = request.path
     respond_to do |format|
       format.html { render "home/not_found"}
-      format.json { render json: {routing_error: @requested_path} }
+      render json: {routing_error: 404} 
     end
    end
 

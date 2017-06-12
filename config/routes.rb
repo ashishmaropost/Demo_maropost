@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   get '/about', :to => 'home#about'
   post '/edit_profile_image', :to=> "galleries#edit_profile_image"
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  match '*path' => 'home#error_404', via: :all
+  # match '*path' => 'home#error_404', via: :all
   
  
 
-  namespace :api , :defaults => { :format => 'json' } do
+  namespace :api , :defaults => { :format => 'xml' } do
     namespace :v1 do
       devise_scope :user do
         post "/sign_in", :to => 'sessions#create'
